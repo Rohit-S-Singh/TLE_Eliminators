@@ -1,0 +1,85 @@
+// https://codeforces.com/contest/451/problem/B
+#include<bits/stdc++.h>
+using namespace std;
+
+#define f first
+#define ss second
+#define ll long long
+#define lb lower_bound
+#define ub upper_bound
+#define pb push_back
+#define vii vector<ll>
+#define sz(x) (int)x.size()
+#define all(x) x.begin(), x.end()
+#define mem0(a) memset(a,0,sizeof(a)) 
+#define mem1(a) memset(a,-1,sizeof(a))
+#define rep(i,a,n) for(ll i=a;i<n;i++)
+#define mnn(x) min_element(x.begin(), x.end()) - x.begin()
+#define mxx(x) max_element(x.begin(), x.end()) - x.begin()
+
+template<typename T> istream& operator>>(istream& in, vector<T>& a) {for(auto &x : a) in >> x; return in;};
+template<typename T> ostream& operator<<(ostream& out, vector<T>& a) {for(auto &x : a) out << x << ' '; return out;};
+
+int mod =  1e9+7;
+const long long INF=1e18;
+
+bool sor(vector<ll>&v){
+
+    rep(i,0,sz(v)-1){
+        if(v[i]>v[i+1])
+            return 0;
+    }
+    return 1;
+} 
+
+void test_cases(){
+
+    int n;
+    cin>>n;
+
+    vii v(n);
+    cin >> v;
+
+    vector<ll>vv = v;
+
+    sort(all(vv));
+
+    int l  = 0 , r = sz(v) - 1, lll = 0, rr = 0;
+
+    while(l<r){
+
+        if(v[l]!= vv[l] && v[r] != vv[r]){
+            lll = l , rr = r;
+            reverse(v.begin()+l,v.begin()+r+1);
+            break;
+        }
+
+        if(v[l]==vv[l]){
+            l++;
+        }
+        if(v[r]==vv[r]){
+            r--;
+        }
+    }
+
+    if(sor(v)){
+        cout<<"yes\n";
+        cout<<lll+1<<" "<<rr+1;
+    }
+    else{
+        cout<<"no";
+    }
+}
+ 
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t=1;
+    // cin>>t;
+    
+    while(t--){
+        test_cases();
+        cout<<"\n";
+    }
+}
